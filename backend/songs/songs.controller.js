@@ -3,14 +3,14 @@ const { func } = require("joi");
 const router = express.Router();
 const Joi = require("joi");
 const validateRequest = require("_middleware/validate-request");
-const authorize = require('_middleware/authorize')
+const authorize = require("_middleware/authorize");
 const songService = require("./song.service");
 
 // routes
-router.get("/", authenticateSchema, getSongs);
-router.put("/:songId/verify", verifySong);
-router.put("/:songId/edit", editSong);
-router.post("/remap", remapSongname);
+router.get("/", authorize(), authenticateSchema, getSongs);
+router.put("/:songId/verify", authorize(), verifySong);
+router.put("/:songId/edit", authorize(), editSong);
+router.post("/remap", authorize(), remapSongname);
 
 module.exports = router;
 
@@ -24,8 +24,9 @@ function authenticateSchema(req, res, next) {
 
 function getSongs(req, res, next) {
   const { limit, offset } = req.query;
+  const userId = req.user.id;
   songService
-    .getSongs({ limit, offset })
+    .getSongs({ limit, offset, userId })
     .then((d) => {
       res.json(d);
     })

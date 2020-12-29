@@ -13,13 +13,17 @@ class Login extends Component {
     try {
       const response = await axios.request({
         method: "POST",
-        baseURL: "http://localhost:4000",
+        baseURL: "http://54.227.81.0:4000",
         url: `/accounts/authenticate`,
         data: this.state,
       });
       toast.dismiss(a);
-      localStorage.setItem("auth.token", "tokenvaluehere");
-      this.props.history.push("/songs");
+      if (response.data.jwtToken) {
+        localStorage.setItem("auth.token", response.data.jwtToken);
+        this.props.history.push("/songs");
+      } else {
+        toast.error("Unexpected error");
+      }
     } catch (error) {
       toast.dismiss(a);
       toast.error(error.message);

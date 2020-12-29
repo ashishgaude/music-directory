@@ -38,9 +38,12 @@ class SongDetail extends Component {
       console.log(a);
       const response = await axios.request({
         method: "POST",
-        baseURL: "http://localhost:4000",
+        baseURL: "http://54.227.81.0:4000",
         url: `/songs/remap`,
         data: { songId, newSearchMid: remap },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth.token")}`,
+        },
       });
       toast.dismiss(a);
       toast.success("Success");
@@ -50,14 +53,21 @@ class SongDetail extends Component {
     }
   };
 
+  onSongCancle = () => {
+    this.props.history.push("/songs");
+  };
+
   onSongSave = async () => {
     const a = toast.info("saving...");
     try {
       const response = await axios.request({
         method: "PUT",
-        baseURL: "http://localhost:4000",
+        baseURL: "http://54.227.81.0:4000",
         url: `/songs/${this.state.id}/edit`,
         data: this.state,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth.token")}`,
+        },
       });
       toast.dismiss(a);
       toast.success("Success");
@@ -159,7 +169,9 @@ class SongDetail extends Component {
               </td>
             </tr>
             <tr>
-              <td></td>
+              <td>
+                <button onClick={() => this.onSongCancle()}>Cancle</button>
+              </td>
               <td>
                 <button onClick={() => this.onSongSave()}>Save</button>
               </td>

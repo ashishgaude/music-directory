@@ -10,7 +10,7 @@ class Songs extends Component {
     loading: true,
     data: [],
     offset: 0,
-    pagesize: 30,
+    pagesize: 100,
   };
 
   componentDidMount() {
@@ -22,8 +22,11 @@ class Songs extends Component {
       this.setState({ loading: true });
       const response = await axios.request({
         method: "GET",
-        baseURL: "http://localhost:4000",
+        baseURL: "http://54.227.81.0:4000",
         url: `/songs?limit=${this.state.pagesize}&offset=${this.state.offset}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth.token")}`,
+        },
       });
 
       this.setState({ data: response.data, loading: false });
@@ -44,7 +47,7 @@ class Songs extends Component {
         <div style={{ width: "85vw" }}>
           {!loading && (
             <table
-              width="600"
+              width="780"
               style={{
                 boxShadow: "0 0 20px 0 rgba(0,0,0,.22)",
                 border: "5px solid #fff",
@@ -52,10 +55,11 @@ class Songs extends Component {
             >
               <thead className="table-head">
                 <tr className="head-tr">
-                  <td width="50">Id </td>
-                  <td width="140">New Song name</td>
-                  <td width="180">Search song</td>
-                  <td width="170">Lyric</td>
+                  <td width="50">id </td>
+                  <td width="140">newsongname</td>
+                  <td width="180">searchsongname</td>
+                  <td width="180">searchartistname</td>
+                  <td width="170">lyric</td>
                   <td width="30">OK</td>
                   <td width="30">Edit</td>
                 </tr>

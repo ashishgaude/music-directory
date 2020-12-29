@@ -24,12 +24,12 @@ table {
 } */
 
 .table-body-rows {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   overflow-x: hidden;
-  height: 470px;
+  /* height: 470px; */
 }
 
-.table-body-rows::-webkit-scrollbar {
+/* .table-body-rows::-webkit-scrollbar {
   width: 8px;
   background: #f1f1f1;
   border-radius: 5px;
@@ -38,11 +38,11 @@ table {
 .table-body-rows::-webkit-scrollbar-thumb {
   background: #cccccc;
   border-radius: 5px;
-}
+} */
 
 .table-body td,
 .table-head td {
-  font-size: 1vw;
+  font-size: 0.7vw;
 }
 
 .table-body td div {
@@ -73,7 +73,7 @@ tbody tr:nth-child(odd) {
 }
 
 .email-style {
-  font-size: 1vw;
+  font-size: 0.7vw;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;

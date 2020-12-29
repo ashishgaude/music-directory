@@ -3,6 +3,7 @@ import axios from "axios";
 
 import PencilSvg from "../../assets/pencil.svg";
 import CheckSvg from "../../assets/check.svg";
+import { toast } from "react-toastify";
 
 import "./list.css";
 
@@ -30,12 +31,23 @@ class List extends Component {
   };
 
   verifySong = async (record) => {
-    const response = await axios.request({
-      method: "PUT",
-      baseURL: "http://localhost:4000",
-      url: `/songs/${record.id}/verify`,
-    });
-    console.log("response", response.body);
+    const a = toast.info("saving...");
+    try {
+      const response = await axios.request({
+        method: "PUT",
+        baseURL: "http://54.227.81.0:4000",
+        url: `/songs/${record.id}/verify`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth.token")}`,
+        },
+      });
+      toast.dismiss(a);
+      toast.success("Success");
+      console.log("response", response.body);
+    } catch (error) {
+      toast.dismiss(a);
+      toast.error(error.message);
+    }
   };
 
   render() {
@@ -49,30 +61,22 @@ class List extends Component {
             <td width="140">
               <div
                 className="truncate"
-                style={{ width: "18vw" }}
+                style={{ width: "13vw" }}
                 title={record.newsongname}
               >
                 {record.newsongname}
               </div>
-              <div>
-                <i>{record.referremark1}</i>
-              </div>
             </td>
             <td width="180">
               <div>{record.searchsongname}</div>
-              <div>
-                <span
-                  className="col-md-4 grid-text details-span link-highlighter p-0"
-                  style={{ verticalAlign: "middle" }}
-                >
-                  {record.searchartistname}
-                </span>
-              </div>
+            </td>
+            <td width="180">
+              <div>{record.searchartistname}</div>
             </td>
             <td width="170">
               <div
                 className="truncate"
-                style={{ width: "20vw" }}
+                style={{ width: "16vw" }}
                 onMouseOver={() => this.showLyrics(record)}
               >
                 {record.lyric}

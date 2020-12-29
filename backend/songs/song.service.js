@@ -11,9 +11,9 @@ module.exports = {
   remapSongname,
 };
 
-async function getSongs({ limit, offset, userid = 0 }) {
+async function getSongs({ limit, offset, userId }) {
   const songs = await db.sequelize.query(
-    `SELECT * FROM view_masterlist where refer1 = "${userid}" ORDER BY id ASC LIMIT ${limit} OFFSET ${offset}`,
+    `SELECT * FROM view_masterlist where refer1 = "${userId}" and referremark1 = "pending" ORDER BY id ASC LIMIT ${limit} OFFSET ${offset}`,
     {
       type: QueryTypes.SELECT,
     }
