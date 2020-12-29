@@ -1,0 +1,87 @@
+table {
+  background: white;
+  width: 100%;
+}
+
+.table-head,
+.table-body tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* .table-body {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.22);
+  border: 18px solid white;
+  border-collapse: collapse;
+  display: block;
+  height: 550px;
+}
+
+.table-head {
+  border: 18px solid #f7f7f7;
+  border-bottom: none;
+} */
+
+.table-body-rows {
+  /* overflow-y: scroll; */
+  overflow-x: hidden;
+  /* height: 470px; */
+}
+
+/* .table-body-rows::-webkit-scrollbar {
+  width: 8px;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.table-body-rows::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 5px;
+} */
+
+.table-body td,
+.table-head td {
+  font-size: 0.7vw;
+}
+
+.table-body td div {
+  padding: 0.2vw;
+}
+
+tbody tr:nth-child(odd) {
+  background: #f7f7f7;
+}
+
+.head-tr {
+  background: #f7f7f7;
+  height: 50px;
+}
+
+.head-tr td {
+  color: #ffffff;
+  background: #7d7d7d;
+  font-size: 1vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-family: "Roboto";
+}
+
+.table-body tr td:first-child,
+.table-head tr td:first-child {
+  padding-left: 22px;
+}
+
+.email-style {
+  font-size: 0.7vw;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.26;
+  letter-spacing: 0.19px;
+  color: #333333;
+}
+
+.details-span {
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+﻿{
+    "database": {
+        "host": "instance101015zl.c40nn29uecdd.ap-northeast-1.rds.amazonaws.com",
+        "port": 3306,
+        "user": "fb2",
+        "password": "fdfasf3213",
+        "database": "uatDatabase"
+    },
+    "secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
+}
